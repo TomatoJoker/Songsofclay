@@ -1,0 +1,12 @@
+{% set socialItems = ['facebook', 'instagram', 'twitter', 'patreon'] %}
+<ul class="social">
+    {% for socialItem in socialItems %}
+        <li class="social__item">
+            <a class="social__link" href="#" aria-label="link to {{ socialItem }}">
+                <svg class="icon" width="15" height="15">
+                    <use href="{{ iconUrl }}{{ socialItem }}"></use>
+                </svg>
+            </a>
+        </li>
+    {% endfor %}
+</ul>

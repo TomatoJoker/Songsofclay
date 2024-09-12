@@ -1,0 +1,8 @@
+.is-slide-left {
+
+  .is-animated & {
+    opacity: 0;
+    transform: translateX(-300px);
+  }
+
+}
