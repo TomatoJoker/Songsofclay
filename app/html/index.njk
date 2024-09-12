@@ -1,0 +1,44 @@
+{% set title = 'Home' %}
+{% set styles = ['animations', 'home-page'] %}
+{% set scripts = ['gsap', 'animations'] %}
+{% extends 'layouts/layout.njk' %}
+{% block content %}
+    <div class="wrapper">
+        {% include 'components/header.njk' %}
+        <main class="main">
+            <section class="hero">
+                <div>
+                    <img class="hero__decor hero__decor-top-right is-hero-decor-animation-bounce" width="429" height="538" src="./images/b4.png" alt="">
+                    <img class="hero__decor hero__decor-top-left is-hero-decor-animation-bounce" width="281" height="313" src="./images/b3.png" alt="">
+                    <img class="hero__decor hero__decor-center is-hero-decor-animation-bounce" width="334" height="373" src="./images/b2.png" alt="">
+                    <img class="hero__decor hero__decor-bottom is-hero-decor-animation-delay" width="796" height="597" src="./images/b11.png" alt="">
+                </div>
+                <svg class="hero__icon icon is-zoom" width="1420" height="208">
+                    <use href="{{ iconUrl }}title-sprite"></use>
+                </svg>
+                <div class="container">
+                    <div class="hero__info-wrapper">
+                        <div class="h2-title is-slide-top">
+                            €62
+                        </div>
+                        <div class="hero__info">
+                            <div class="is-slide-top">
+                                <p>
+                                    Hevorga Noci releases a new collection of ceramic acoustic instruments, inspired by
+                                    traditional Ukrainian toy.
+                                </p>
+                            </div>
+                            <a class="hero__button button is-slide-left" href="#">
+                                About the collection
+                                <svg width="21" height="10" class="icon">
+                                    <use href="{{ iconUrl }}arrow-text"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        {% include 'components/footer.njk' %}
+    </div>
+{% endblock %}

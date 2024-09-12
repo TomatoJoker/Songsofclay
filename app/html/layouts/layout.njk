@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no"/>
+  <title>{{ title }}</title>
+  {% for style in stylesVendor %}
+    <link rel="stylesheet" type="text/css" href="./css/vendors/{{ style }}.min.css">
+  {% endfor %}
+  <link rel="stylesheet" type="text/css" href="./css/common.min.css">
+  {% for stylePage in styles %}
+    <link rel="stylesheet" type="text/css" href="./css/{{ stylePage }}.min.css">
+  {% endfor %}
+</head>
+<body class="is-animated">
+{% set iconUrl = './i/sprite.svg#' %}
+{% block content %}
+{% endblock %}
+
+{% for script in scripts %}
+  <script src="js/{{ script }}.min.js"></script>
+{% endfor %}
+<script src="js/main.min.js"></script>
+</body>
+</html>

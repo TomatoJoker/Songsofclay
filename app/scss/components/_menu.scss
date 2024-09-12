@@ -1,0 +1,21 @@
+.menu {
+
+  &__list {
+    @extend %card-row;
+    align-items: center;
+    gap: 47px;
+  }
+
+  &__item {
+    font-size: 36px;
+
+    @include min-media($desktop) {
+      font-size: 16px;
+    }
+
+    a {
+      @extend %link;
+    }
+  }
+
+}

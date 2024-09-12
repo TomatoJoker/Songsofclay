@@ -1,0 +1,27 @@
+// Colors
+$light: #fff;
+$black: #000;
+$decor: #3C91DC;
+$transparent: rgba(255, 255, 255, 0);
+
+// media sizes
+$desktop: 1200;
+
+// animation
+$speed: 300ms;
+$speed-large: 1800ms;
+$time-function: ease-in-out;
+
+:root {
+  --speed: #{$speed};
+  --speed-large: #{$speed-large};
+  --time-function: #{$time-function};
+  --desktop: #{$desktop};
+  --vh: 1vh;
+}
+
+//layout
+$padding: 20px;
+$desktop-width: 1286px;
+$site-container: $desktop-width + ($padding * 2);
+

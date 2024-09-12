@@ -1,0 +1,12 @@
+.social {
+  display: flex;
+  gap: 13px;
+
+  &__link {
+    display: block;
+
+    @include hover() {
+      opacity: 0.7;
+    }
+  }
+}

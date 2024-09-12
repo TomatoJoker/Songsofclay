@@ -1,0 +1,18 @@
+%h1-title {
+  @include font-settings(50, 68);
+  @include min-media(1200) {
+    font-size: 70px;
+  }
+}
+
+%h2-title {
+  font-size: 24px;
+  line-height: 1.45;
+  @include min-media(1200) {
+    font-size: 40px;
+  }
+}
+
+%h3-title {
+  @include font-settings(20, 24);
+}

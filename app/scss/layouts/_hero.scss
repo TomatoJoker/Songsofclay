@@ -1,0 +1,87 @@
+.hero {
+  padding-top: 137px;
+  padding-bottom: 48px;
+  position: relative;
+  z-index: 1;
+
+  @include min-media($desktop) {
+    padding-top: 200px;
+    padding-bottom: 163px;
+  }
+
+  &__icon {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
+
+    @include media($desktop) {
+      width: 100%;
+    }
+  }
+
+  &__info-wrapper {
+    gap: 28px;
+    @extend %card-row;
+    margin-top: 217px;
+    max-width: 470px;
+
+    @include min-media($desktop) {
+      gap: 72px;
+      margin-top: 63px;
+    }
+  }
+
+  &__info {
+    flex-grow: 1;
+  }
+
+  &__button {
+    margin-top: 28px;
+
+    @include min-media($desktop) {
+      margin-top: 41px;
+    }
+  }
+
+  &__decor {
+    position: absolute;
+    z-index: 1;
+  }
+
+  &__decor-top-right {
+
+    @include min-media($desktop) {
+      left: calc(50% + 133px);
+      top: -328px;
+    }
+
+  }
+
+  &__decor-top-left {
+
+    @include min-media($desktop) {
+      left: calc(50% - 143px);
+      top: -135px;
+    }
+
+  }
+
+  &__decor-center {
+
+    @include min-media($desktop) {
+      left: calc(50% + 146px);
+      top: 24px;
+    }
+
+  }
+
+  &__decor-bottom {
+
+    @include min-media($desktop) {
+      left: calc(50% - 280px);
+      top: 210px;
+    }
+
+  }
+}
