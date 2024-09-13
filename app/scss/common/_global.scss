@@ -87,3 +87,11 @@ h6, .h6-title {
 .disable {
   pointer-events: none !important;
 }
+
+.section {
+
+  @include min-media($desktop) {
+    height: 100vh;
+  }
+
+}

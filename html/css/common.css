@@ -398,6 +398,12 @@ h1, h2, h3, h4, h4, h6, .h1-title, .h2-title, .h3-title, .h4-title, .h5-title, .
   pointer-events: none !important;
 }
 
+@media only screen and (min-width: 1200px) {
+  .section {
+    height: 100vh;
+  }
+}
+
 .icon {
   display: block;
   fill: currentColor;
@@ -494,6 +500,10 @@ h1, h2, h3, h4, h4, h6, .h1-title, .h2-title, .h3-title, .h4-title, .h5-title, .
 @media only screen and (min-width: 1200px) {
   .header {
     padding: 37px 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
   }
 }
 

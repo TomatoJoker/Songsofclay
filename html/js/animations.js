@@ -30,6 +30,7 @@ window.addEventListener('load', function () {
       y: 0,
       duration: speed,
       ease: "back.out",
+      delay: 0.5,
       stagger: {
         each: 0.3
       }

@@ -31,7 +31,7 @@
 }
 
 .hero {
-  padding-top: 137px;
+  padding-top: 118px;
   padding-bottom: 48px;
   position: relative;
   z-index: 1;
@@ -54,6 +54,7 @@
 @media only screen and (max-width: 1200px) {
   .hero__icon {
     width: 100%;
+    height: auto;
   }
 }
 
@@ -91,31 +92,82 @@
   z-index: 1;
 }
 
+@media only screen and (max-width: 1200px) {
+  .hero__decor {
+    height: auto;
+  }
+}
+
+.hero__decor-top-right {
+  left: calc(50% - 63px);
+  top: -144px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .hero__decor-top-right {
+    width: 196px;
+  }
+}
+
 @media only screen and (min-width: 1200px) {
   .hero__decor-top-right {
     left: calc(50% + 133px);
-    top: -328px;
+    top: -224px;
+  }
+}
+
+.hero__decor-top-left {
+  left: calc(50% - 190px);
+  top: -41px;
+  z-index: 3;
+}
+
+@media only screen and (max-width: 1200px) {
+  .hero__decor-top-left {
+    width: 188px;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .hero__decor-top-left {
-    left: calc(50% - 143px);
-    top: -135px;
+    left: calc(50% - 105px);
+    top: -6px;
+  }
+}
+
+.hero__decor-center {
+  top: 41px;
+  left: calc(50% + 12px);
+}
+
+@media only screen and (max-width: 1200px) {
+  .hero__decor-center {
+    width: 174px;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .hero__decor-center {
     left: calc(50% + 146px);
-    top: 24px;
+    top: 133px;
+  }
+}
+
+.hero__decor-bottom {
+  top: 146px;
+  left: calc(50% - 208px);
+}
+
+@media only screen and (max-width: 1200px) {
+  .hero__decor-bottom {
+    width: 352px;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .hero__decor-bottom {
     left: calc(50% - 280px);
-    top: 210px;
+    top: 319px;
   }
 }
 

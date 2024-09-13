@@ -31,19 +31,21 @@ window.addEventListener('load', () => {
 
         const heroAnimTl = gsap.timeline();
 
-        heroAnimTl.to(".is-animation-load .is-hero-decor-animation-bounce", {
-            y: 0,
-            duration: speed,
-            ease: "back.out",
-            stagger: {
-                each: 0.3,
-            }
-        })
+        heroAnimTl
+            .to(".is-animation-load .is-hero-decor-animation-bounce", {
+                y: 0,
+                duration: speed,
+                ease: "back.out",
+                delay: 0.5,
+                stagger: {
+                    each: 0.3,
+                }
+            })
             .to(".is-animation-load .is-hero-decor-animation-delay", {
-            y: 0,
-            duration: speed,
-            ease: "power3.out"
-        },"1")
+                y: 0,
+                duration: speed,
+                ease: "power3.out"
+            }, "1")
     }
 
 });
