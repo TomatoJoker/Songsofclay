@@ -115,7 +115,9 @@ exports.js = js;
 const jsLibs = () => {
   return gulp.src(
       [
-        'node_modules/gsap/dist/gsap.min.js',
+          'node_modules/gsap/dist/gsap.min.js',
+          'node_modules/gsap/dist/ScrollTrigger.min.js',
+          'node_modules/gsap/dist/ScrollToPlugin.min.js'
       ]
   )
       .pipe(gulp.dest('html/js/'));

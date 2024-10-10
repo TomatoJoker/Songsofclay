@@ -1,6 +1,6 @@
 .is-slide-top {
 
-  .is-animated & {
+  @include is-animated {
     opacity: 0;
     transform: translateY(200px);
   }

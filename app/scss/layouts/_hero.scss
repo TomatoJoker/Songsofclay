@@ -5,8 +5,7 @@
   z-index: 1;
 
   @include min-media($desktop) {
-    padding-top: 200px;
-    padding-bottom: 163px;
+    padding-top: 109px;
   }
 
   &__icon {
@@ -15,7 +14,7 @@
     position: relative;
     z-index: 2;
 
-    @include media($desktop) {
+    @include media(1420) {
       width: 100%;
       height: auto;
     }

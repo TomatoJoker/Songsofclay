@@ -1,0 +1,20 @@
+.info-box {
+  max-width: 315px;
+  margin-left: 144px;
+
+  &__text {
+
+    p {
+      &:not(:last-child) {
+        margin-bottom: 39px;
+      }
+    }
+
+  }
+
+  &__text,
+  &__button {
+    margin-top: 39px;
+  }
+
+}

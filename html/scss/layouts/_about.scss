@@ -1,0 +1,26 @@
+.about {
+  padding-top: 163px;
+  display: flex;
+  flex-direction: column;
+
+  &__icon {
+    margin-top: auto;
+  }
+
+  &__icon-desktop {
+
+    @include media($desktop) {
+      display: none;
+    }
+  }
+
+  &__icon-mobile {
+    width: 100%;
+    height: auto;
+
+    @include min-media($desktop) {
+      display: none;
+    }
+  }
+
+}

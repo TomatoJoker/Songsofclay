@@ -1,6 +1,6 @@
 .is-slide-left {
 
-  .is-animated & {
+  @include is-animated {
     opacity: 0;
     transform: translateX(-300px);
   }

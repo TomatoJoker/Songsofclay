@@ -19,6 +19,13 @@
   background-size: cover;
   background-position: 50% 50%; }
 
+@mixin is-animated {
+  @include min-media($desktop) {
+    .is-animated & {
+      @content;
+    }
+  }
+}
 
 @mixin absolute-center {
   top: 50%;

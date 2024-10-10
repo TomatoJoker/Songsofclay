@@ -92,6 +92,13 @@ h6, .h6-title {
 
   @include min-media($desktop) {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
+}
+
+.is-no-scroll {
+  overflow: hidden;
 }

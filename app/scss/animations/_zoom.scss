@@ -1,6 +1,6 @@
 .is-zoom {
 
-  .is-animated & {
+  @include is-animated {
     transform: scale(0.65);
   }
 

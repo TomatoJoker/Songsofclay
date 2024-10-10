@@ -1,12 +1,11 @@
 .hero {
-  padding-top: 137px;
+  padding-top: 118px;
   padding-bottom: 48px;
   position: relative;
   z-index: 1;
 
   @include min-media($desktop) {
-    padding-top: 200px;
-    padding-bottom: 163px;
+    padding-top: 109px;
   }
 
   &__icon {
@@ -15,8 +14,9 @@
     position: relative;
     z-index: 2;
 
-    @include media($desktop) {
+    @include media(1420) {
       width: 100%;
+      height: auto;
     }
   }
 
@@ -47,40 +47,70 @@
   &__decor {
     position: absolute;
     z-index: 1;
+
+    @include media($desktop) {
+      height: auto;
+    }
   }
 
   &__decor-top-right {
+    left: calc(50% - 63px);
+    top: -144px;
+
+    @include media($desktop) {
+      width: 196px;
+    }
 
     @include min-media($desktop) {
       left: calc(50% + 133px);
-      top: -328px;
+      top: -224px;
     }
 
   }
 
   &__decor-top-left {
+    left: calc(50% - 190px);
+    top: -41px;
+    z-index: 3;
+
+    @include media($desktop) {
+      width: 188px;
+    }
 
     @include min-media($desktop) {
-      left: calc(50% - 143px);
-      top: -135px;
+      left: calc(50% - 105px);
+      top: -6px;
+
     }
 
   }
 
   &__decor-center {
+    top: 41px;
+    left: calc(50% + 12px);
+
+    @include media($desktop) {
+      width: 174px;
+    }
 
     @include min-media($desktop) {
       left: calc(50% + 146px);
-      top: 24px;
+      top: 133px;
     }
 
   }
 
   &__decor-bottom {
+    top: 146px;
+    left: calc(50% - 208px);
+
+    @include media($desktop) {
+      width: 352px;
+    }
 
     @include min-media($desktop) {
       left: calc(50% - 280px);
-      top: 210px;
+      top: 319px;
     }
 
   }

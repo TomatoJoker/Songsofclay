@@ -401,7 +401,21 @@ h1, h2, h3, h4, h4, h6, .h1-title, .h2-title, .h3-title, .h4-title, .h5-title, .
 @media only screen and (min-width: 1200px) {
   .section {
     height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
+}
+
+.is-no-scroll {
+  overflow: hidden;
 }
 
 .icon {
@@ -508,8 +522,25 @@ h1, h2, h3, h4, h4, h6, .h1-title, .h2-title, .h3-title, .h4-title, .h5-title, .
 }
 
 .header__logo {
-  position: relative;
-  z-index: 100;
+  width: 43px;
+  height: 35px;
+  -webkit-transition-duration: 1800ms;
+          transition-duration: 1800ms;
+  -webkit-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
+  -webkit-transition-property: top;
+  transition-property: top;
+}
+
+@media only screen and (min-width: 1200px) {
+  .header__logo {
+    position: absolute;
+    top: 57px;
+  }
+}
+
+.header__logo img {
+  display: block;
   -webkit-transition-timing-function: ease-in-out;
           transition-timing-function: ease-in-out;
   -webkit-transition-duration: 300ms;
@@ -519,7 +550,7 @@ h1, h2, h3, h4, h4, h6, .h1-title, .h2-title, .h3-title, .h4-title, .h5-title, .
 }
 
 @media (any-hover: hover) {
-  .header__logo:hover {
+  .header__logo img:hover {
     -webkit-transform: scale(1.2);
         -ms-transform: scale(1.2);
             transform: scale(1.2);
@@ -591,6 +622,7 @@ h1, h2, h3, h4, h4, h6, .h1-title, .h2-title, .h3-title, .h4-title, .h5-title, .
             transform: none;
     min-height: 0px;
     background: rgba(255, 255, 255, 0);
+    margin-left: calc(43px + 124px);
   }
 }
 

@@ -21,11 +21,9 @@
         <header class="header is-slide-top">
     <div class="container">
         <div class="header__row">
-            <div class="header__logo">
-                <a href="#">
-                    <img src="./images/logo.svg" width="43" height="35" alt="Link to main page">
-                </a>
-            </div>
+            <button type="button" class="button-full-reset header__logo js-fixed-element">
+                <img src="./images/logo.svg" width="43" height="35" alt="Link to main page">
+            </button>
             <button class="header__button-burger button-full-reset js-open-burger" type="button">
                 <svg class="icon icon__stroke" width="38" height="16">
                     <use href="./i/sprite.svg#btn-burger-open"></use>
@@ -99,12 +97,16 @@
     </div>
 </header>
         <main class="main">
-            <section class="hero section">
+            <section class="hero section js-sections">
                 <div>
-                    <img class="hero__decor hero__decor-top-right is-hero-decor-animation-bounce" width="429" height="538" src="./images/b4.png" alt="">
-                    <img class="hero__decor hero__decor-top-left is-hero-decor-animation-bounce" width="321" height="333" src="./images/b3.png" alt="">
-                    <img class="hero__decor hero__decor-center is-hero-decor-animation-bounce" width="334" height="373" src="./images/b2.png" alt="">
-                    <img class="hero__decor hero__decor-bottom is-hero-decor-animation-delay" width="796" height="657" src="./images/b11.png" alt="">
+                    <img class="hero__decor hero__decor-top-right is-hero-decor-animation-bounce" width="429"
+                         height="538" src="./images/b4.png" alt="">
+                    <img class="hero__decor hero__decor-top-left is-hero-decor-animation-bounce" width="321"
+                         height="333" src="./images/b3.png" alt="">
+                    <img class="hero__decor hero__decor-center is-hero-decor-animation-bounce" width="334" height="373"
+                         src="./images/b2.png" alt="">
+                    <img class="hero__decor hero__decor-bottom is-hero-decor-animation-delay" width="796" height="657"
+                         src="./images/b11.png" alt="">
                 </div>
                 <svg class="hero__icon icon is-zoom" width="1420" height="208">
                     <use href="./i/sprite.svg#title-sprite"></use>
@@ -131,6 +133,40 @@
                     </div>
                 </div>
             </section>
+            <section class="about section js-sections">
+                <div class="container">
+                    <div class="info-box">
+                        <h2 class="h3-title">About the Artist</h2>
+                        <div class="info-box__text">
+                            <p>
+                                Living in Italy since 1996, the Ukrainian sculptor, Hevorga Noci, graduated from the
+                                School of Fine Arts Manuel Belgrano and majored in Sculptor in the Superior School of
+                                Fine Arts in Santa Rosaria, Italy.
+                            </p>
+                            <p>
+                                In parallel to the work as a fine artist and researcher of folk Ukrainian instruments,
+                                she has been intensively working with clay and ceramic materials. Hevorga participated
+                                in workshops, exhibitions and festivals related with porcelain art
+                                in Italy and the world.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <svg class="about__icon about__icon-desktop" width="1288" height="166">
+                    <use href="./i/sprite.svg#about-title-sprite-desk"></use>
+                </svg>
+                <svg class="about__icon about__icon-mobile" width="355" height="160">
+                    <use href="./i/sprite.svg#about-title-sprite-mob"></use>
+                </svg>
+            </section>
+            <section class="section js-sections">
+            </section>
+            <section class="section-decor js-sections">
+                <div class="is-fade-out-bg section section-decor__wrapper">
+                    <div class="section-decor__bg is-fade-out-bg__lower-level"></div>
+                    <img class="section-decor__img is-slide-right" src="./images/birds.png" width="1140" height="1079" alt="">
+                </div>
+            </section>
         </main>
         
     </div>
@@ -138,6 +174,10 @@
 
 
   <script src="js/gsap.min.js"></script>
+
+  <script src="js/ScrollTrigger.min.js"></script>
+
+  <script src="js/ScrollToPlugin.min.js"></script>
 
   <script src="js/animations.min.js"></script>
 
