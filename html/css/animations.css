@@ -61,8 +61,11 @@
 @media only screen and (min-width: 1200px) {
   .is-animated .is-fade-out-bg {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
   }
+}
+
+@media only screen and (min-width: 1200px) {
   .is-animated .is-fade-out-bg__lower-level {
     opacity: 0;
     background: #c8c8c6;

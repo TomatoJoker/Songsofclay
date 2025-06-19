@@ -1,0 +1,23 @@
+.about {
+  padding-top: 163px;
+  display: flex;
+  flex-direction: column;
+
+  &__icon {
+    margin-top: auto;
+  }
+
+  &__icon-mobile {
+
+    @include min-media($desktop) {
+      display: none;
+    }
+  }
+
+  &__icon-desktop {
+
+    @include media($desktop) {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.is-slide-right {
+  position: relative;
+
+  @include is-animated {
+    transform: translateX( 100% );
+  }
+}
