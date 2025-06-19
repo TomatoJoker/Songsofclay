@@ -53,8 +53,25 @@ window.addEventListener('load', () => {
                 ease: "power3.out"
             }, "1");
 
+        const bannerSlideRight = gsap.timeline();
+
+        bannerSlideRight
+            .to(`.${loadClass} .is-slide-right`, {
+            x: 0,
+            duration: speed * 0.8,
+            ease: "power2.in"
+         })
+        .to(`.${loadClass} .is-fade-out-bg__lower-level`, {
+            opacity: 1,
+            duration: speed * 1.1,
+            ease: "power2.out"
+        })
+
+        bannerSlideRight.paused();
+
         const sections = document.querySelectorAll('.js-sections');
         const fixedLogo = document.querySelector(`.${loadClass}`).querySelector('.js-fixed-element');
+
         let currentIndex = 0,
             logoPosition = 0;
 
@@ -68,11 +85,9 @@ window.addEventListener('load', () => {
                 case index === 3:
                     console.log('True');
                     break;
-                case currentIndex < index:
+                default:
                     logoPosition = (window.innerHeight + 200) * index;
                     break;
-                default:
-                    logoPosition = logoPosition - ((window.innerHeight + 200) * index);
             }
 
             gsap.to(fixedLogo, {
@@ -87,17 +102,10 @@ window.addEventListener('load', () => {
         const animationsObj = (index) => {
             switch (index) {
                 case 3:
-                    gsap.to(`.${loadClass} .is-slide-right`, {
-                        x: 0,
-                        duration: speed * 0.8,
-                        ease: "power2.in"
-                    })
-
-                    gsap.to(`.${loadClass} .is-fade-out-bg__lower-level`, {
-                        opacity: 1,
-                        duration: speed * 1.1,
-                        ease: "power2.out"
-                    })
+                    bannerSlideRight.play();
+                    break;
+                default:
+                    bannerSlideRight.reverse();
                     break;
             }
         }

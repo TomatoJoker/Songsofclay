@@ -1,7 +1,7 @@
 .is-hero-decor-animation-bounce,
 .is-hero-decor-animation-delay {
 
-  .is-animated & {
+  @include is-animated {
     transform: translateY( 120vh );
   }
 
