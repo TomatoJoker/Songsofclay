@@ -1,0 +1,21 @@
+.details {
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 70px;
+    margin-top: 145px;
+    min-width: 430px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    flex-basis: calc((100% - 70px) / 2);
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+}

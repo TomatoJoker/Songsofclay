@@ -1,0 +1,16 @@
+.is-fade-out-bg {
+
+  @include is-animated {
+    position: absolute;
+    bottom: 0;
+  }
+
+  &__lower-level {
+
+    @include is-animated {
+      opacity: 0;
+      background: #c8c8c6;
+    }
+
+  }
+}

@@ -7,20 +7,17 @@
     margin-top: auto;
   }
 
-  &__icon-desktop {
-
-    @include media($desktop) {
-      display: none;
-    }
-  }
-
   &__icon-mobile {
-    width: 100%;
-    height: auto;
 
     @include min-media($desktop) {
       display: none;
     }
   }
 
+  &__icon-desktop {
+
+    @include media($desktop) {
+      display: none;
+    }
+  }
 }
