@@ -1,4 +1,5 @@
 .details {
+  position: relative;
 
   &__list {
     display: flex;
@@ -17,5 +18,15 @@
     svg {
       flex-shrink: 0;
     }
+  }
+
+  &__img {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__container {
+    position: relative;
   }
 }

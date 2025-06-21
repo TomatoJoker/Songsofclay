@@ -10,6 +10,7 @@
     @include is-animated {
       opacity: 0;
       background: #c8c8c6;
+      visibility: hidden;
     }
 
   }

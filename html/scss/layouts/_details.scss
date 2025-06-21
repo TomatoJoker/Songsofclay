@@ -1,16 +1,32 @@
 .details {
+  position: relative;
 
   &__list {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    column-gap: 70px;
     margin-top: 145px;
-    max-width: 243px;
+    min-width: 430px;
   }
 
   &__item {
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    flex-basis: calc((100% - 70px) / 2);
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  &__img {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__container {
+    position: relative;
   }
 }

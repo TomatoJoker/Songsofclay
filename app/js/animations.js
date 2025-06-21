@@ -6,21 +6,37 @@ const loadClass = 'is-animation-load';
 let speed = styleObj.getPropertyValue('--speed-large');
 speed = parseFloat(speed) / 1000;
 
-gsap.registerPlugin(ScrollTrigger);
-
 window.addEventListener('load', () => {
 
     if (window.innerWidth >= desktopMedia) {
         const animatedBody = document.querySelector('body');
+
         animatedBody?.classList.add(loadClass);
 
-        gsap.to(`.${loadClass} .is-slide-top`, {
+        let enterCount = 0;
+
+        const animateCreate = (el, objProperty, objScrollTrigger) => {
+            document.querySelectorAll(el).forEach(el => {
+                gsap.to(el, {
+                    ...objProperty,
+                    scrollTrigger: {
+                        trigger: el,
+                        ...objScrollTrigger
+                    }
+                });
+            })
+        }
+
+        animateCreate(`.${loadClass} .is-slide-top`, {
             y: 0,
             opacity: 1,
             duration: speed,
             ease: "power3.inOut",
             delay: 0
-        })
+        }, {
+            start: "top bottom",
+            toggleActions: "play none none none"
+        });
 
         gsap.to(`.${loadClass} .is-zoom`, {
             scale: 1,
@@ -53,17 +69,25 @@ window.addEventListener('load', () => {
                 ease: "power3.out"
             }, "1");
 
-        const bannerSlideRight = gsap.timeline();
+        const bannerSlideRight = gsap.timeline({
+            scrollTrigger: {
+                trigger: `.${loadClass} .is-slide-right`,
+                start: "top top",
+                toggleActions: "play reverse play reverse"
+            }
+        });
 
         bannerSlideRight
             .to(`.${loadClass} .is-slide-right`, {
             x: 0,
             duration: speed * 0.8,
+            visibility: "visible",
             ease: "power2.in"
          })
         .to(`.${loadClass} .is-fade-out-bg__lower-level`, {
             opacity: 1,
             duration: speed * 1.1,
+            visibility: "visible",
             ease: "power2.out"
         })
 
@@ -99,23 +123,10 @@ window.addEventListener('load', () => {
             });
         }
 
-        const animationsObj = (index) => {
-            switch (index) {
-                case 3:
-                    bannerSlideRight.play();
-                    break;
-                default:
-                    bannerSlideRight.reverse();
-                    break;
-            }
-        }
-
         const goToSection = (index) => {
             if (index < 0 || index >= sections.length) return;
 
             scrollLogo(index);
-
-            animationsObj(index);
 
             gsap.to(window, {
                 scrollTo: sections[index],
