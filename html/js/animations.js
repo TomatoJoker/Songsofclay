@@ -15,10 +15,12 @@ window.addEventListener('load', function () {
   if (window.innerWidth >= desktopMedia) {
     var animatedBody = document.querySelector('body');
     animatedBody === null || animatedBody === void 0 || animatedBody.classList.add(loadClass);
-    var enterCount = 0;
+    var i = 0;
     var animateCreate = function animateCreate(el, objProperty, objScrollTrigger) {
       document.querySelectorAll(el).forEach(function (el) {
+        i = i + 1;
         gsap.to(el, _objectSpread(_objectSpread({}, objProperty), {}, {
+          delay: i * 0.2,
           scrollTrigger: _objectSpread({
             trigger: el
           }, objScrollTrigger)
@@ -35,10 +37,13 @@ window.addEventListener('load', function () {
       start: "top bottom",
       toggleActions: "play none none none"
     });
-    gsap.to(".".concat(loadClass, " .is-zoom"), {
+    animateCreate(".".concat(loadClass, " .is-zoom"), {
       scale: 1,
       duration: speed,
       ease: "power2.inOut"
+    }, {
+      start: "top bottom",
+      toggleActions: "play none none none"
     });
     gsap.to(".".concat(loadClass, " .is-slide-left"), {
       x: 0,

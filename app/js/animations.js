@@ -13,12 +13,15 @@ window.addEventListener('load', () => {
 
         animatedBody?.classList.add(loadClass);
 
-        let enterCount = 0;
+        let i = 0;
 
         const animateCreate = (el, objProperty, objScrollTrigger) => {
             document.querySelectorAll(el).forEach(el => {
+                i = i + 1;
+
                 gsap.to(el, {
                     ...objProperty,
+                    delay: i * 0.2,
                     scrollTrigger: {
                         trigger: el,
                         ...objScrollTrigger
@@ -38,11 +41,14 @@ window.addEventListener('load', () => {
             toggleActions: "play none none none"
         });
 
-        gsap.to(`.${loadClass} .is-zoom`, {
+        animateCreate(`.${loadClass} .is-zoom`, {
             scale: 1,
             duration: speed,
-            ease: "power2.inOut"
-        })
+            ease: "power2.inOut",
+        }, {
+            start: "top bottom",
+            toggleActions: "play none none none"
+        });
 
         gsap.to(`.${loadClass} .is-slide-left`, {
             x: 0,
