@@ -60,13 +60,7 @@ window.addEventListener('load', function () {
       duration: speed,
       ease: "power3.out"
     }, "1");
-    var bannerSlideRight = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".".concat(loadClass, " .is-slide-right"),
-        start: "top top",
-        toggleActions: "play reverse play reverse"
-      }
-    });
+    var bannerSlideRight = gsap.timeline();
     bannerSlideRight.to(".".concat(loadClass, " .is-slide-right"), {
       x: 0,
       duration: speed * 0.8,
@@ -107,6 +101,11 @@ window.addEventListener('load', function () {
     var goToSection = function goToSection(index) {
       if (index < 0 || index >= sections.length) return;
       scrollLogo(index);
+      if (index === 3) {
+        bannerSlideRight.play();
+      } else {
+        bannerSlideRight.reverse();
+      }
       gsap.to(window, {
         scrollTo: sections[index],
         duration: speed,
