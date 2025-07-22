@@ -652,14 +652,23 @@ h1, h2, h3, h4, h4, h6, .h1-title, .h2-title, .h3-title, .h4-title, .h5-title, .
       align-self: flex-end;
 }
 
+@media only screen and (min-width: 1200px) {
+  .header__social {
+    position: absolute;
+    right: calc( (100vw - 1326px) / 2);
+    top: 0;
+    padding-top: 37px;
+  }
+}
+
 @media only screen and (max-width: 1200px) {
-  .header .social {
+  .header__social {
     gap: 44px;
   }
 }
 
 @media only screen and (max-width: 1200px) {
-  .header .social svg {
+  .header__social svg {
     width: 30px;
     height: 30px;
   }

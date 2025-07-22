@@ -1,5 +1,5 @@
 {% set socialItems = ['facebook', 'instagram', 'twitter', 'patreon'] %}
-<ul class="social">
+<ul class="social{{ ' ' + class if class }}">
     {% for socialItem in socialItems %}
         <li class="social__item">
             <a class="social__link" href="#" aria-label="link to {{ socialItem }}">

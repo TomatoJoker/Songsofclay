@@ -91,7 +91,14 @@
     align-self: flex-end;
   }
 
-  .social {
+  &__social {
+
+    @include min-media($desktop) {
+      position: absolute;
+      right: calc( (100vw - #{$site-container}) / 2);
+      top: 0;
+      padding-top: 37px;
+    }
 
     @include media($desktop) {
       gap: 44px;

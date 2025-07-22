@@ -2,9 +2,42 @@
   padding-top: 163px;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   &__icon {
     margin-top: auto;
+  }
+
+  &__image {
+    @include min-media($desktop) {
+      position: absolute;
+      width: auto;
+      height: auto;
+    }
+  }
+
+  &__image-top {
+    @include min-media($desktop) {
+      top: 0;
+      left: 100%;
+      transform: translate(-70%, -40%);
+    }
+  }
+
+  &__image-left {
+    @include min-media($desktop) {
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__image-bottom {
+    @include min-media($desktop) {
+      bottom: 0;
+      left: 100%;
+      transform: translate(-90%, 20%);
+    }
   }
 
   &__icon-mobile {

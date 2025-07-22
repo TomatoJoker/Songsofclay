@@ -95,12 +95,12 @@ window.addEventListener('load', () => {
 
         const sections = document.querySelectorAll('.js-sections');
         const fixedLogo = document.querySelector(`.${loadClass}`).querySelector('.js-fixed-element');
+        const fixedSocial = document.querySelector(`.${loadClass}`).querySelector('.js-fixed-social');
 
         let currentIndex = 0,
             logoPosition = 0;
 
         const scrollLogo = (index) => {
-            console.log(index);
 
             switch (true) {
                 case index === 0:
@@ -128,10 +128,21 @@ window.addEventListener('load', () => {
 
             scrollLogo(index);
 
+            let fixedSocialAnim =
+                gsap.to(fixedSocial, {
+                    scrollTrigger: {
+                        trigger: '.js-fixed-social',
+                    },
+                    y: (index * window.innerHeight),
+                    duration: speed
+                });
+
             if (index === 3) {
                 bannerSlideRight.play();
+                fixedSocialAnim.pause();
             } else {
                 bannerSlideRight.reverse();
+                fixedSocialAnim.play();
             }
 
             gsap.to(window, {
