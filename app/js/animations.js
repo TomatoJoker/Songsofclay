@@ -15,13 +15,13 @@ window.addEventListener('load', () => {
 
         let i = 0;
 
-        const animateCreate = (el, objProperty, objScrollTrigger) => {
+        const animateCreate = (el, objProperty, objScrollTrigger, delay = 0) => {
             document.querySelectorAll(el).forEach(el => {
                 i = i + 1;
 
                 gsap.to(el, {
                     ...objProperty,
-                    delay: i * 0.2,
+                    delay: i * delay,
                     scrollTrigger: {
                         trigger: el,
                         ...objScrollTrigger
@@ -30,16 +30,19 @@ window.addEventListener('load', () => {
             })
         }
 
-        animateCreate(`.${loadClass} .is-slide-top`, {
+        const isSlideTopObj = {
             y: 0,
             opacity: 1,
             duration: speed,
             ease: "power3.inOut",
-            delay: 0
-        }, {
+        }, isSlideTopScrollTriggerObj = {
             start: "top bottom",
             toggleActions: "play none none none"
-        });
+        }
+
+        animateCreate(`.${loadClass} .is-slide-top`, isSlideTopObj, isSlideTopScrollTriggerObj);
+
+        animateCreate(`.${loadClass} .is-slide-top-delay`, isSlideTopObj, isSlideTopScrollTriggerObj, 0.1);
 
         animateCreate(`.${loadClass} .is-zoom`, {
             scale: 1,

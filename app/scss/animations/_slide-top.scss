@@ -1,4 +1,5 @@
-.is-slide-top {
+.is-slide-top,
+.is-slide-top-delay {
 
   @include is-animated {
     opacity: 0;

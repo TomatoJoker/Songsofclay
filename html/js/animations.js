@@ -17,26 +17,29 @@ window.addEventListener('load', function () {
     animatedBody === null || animatedBody === void 0 || animatedBody.classList.add(loadClass);
     var i = 0;
     var animateCreate = function animateCreate(el, objProperty, objScrollTrigger) {
+      var delay = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
       document.querySelectorAll(el).forEach(function (el) {
         i = i + 1;
         gsap.to(el, _objectSpread(_objectSpread({}, objProperty), {}, {
-          delay: i * 0.2,
+          delay: i * delay,
           scrollTrigger: _objectSpread({
             trigger: el
           }, objScrollTrigger)
         }));
       });
     };
-    animateCreate(".".concat(loadClass, " .is-slide-top"), {
-      y: 0,
-      opacity: 1,
-      duration: speed,
-      ease: "power3.inOut",
-      delay: 0
-    }, {
-      start: "top bottom",
-      toggleActions: "play none none none"
-    });
+    var isSlideTopObj = {
+        y: 0,
+        opacity: 1,
+        duration: speed,
+        ease: "power3.inOut"
+      },
+      isSlideTopScrollTriggerObj = {
+        start: "top bottom",
+        toggleActions: "play none none none"
+      };
+    animateCreate(".".concat(loadClass, " .is-slide-top"), isSlideTopObj, isSlideTopScrollTriggerObj);
+    animateCreate(".".concat(loadClass, " .is-slide-top-delay"), isSlideTopObj, isSlideTopScrollTriggerObj, 0.1);
     animateCreate(".".concat(loadClass, " .is-zoom"), {
       scale: 1,
       duration: speed,
