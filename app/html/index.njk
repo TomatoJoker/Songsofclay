@@ -1,6 +1,9 @@
 {% set title = 'Home' %}
 {% set styles = ['animations', 'home-page'] %}
 {% set scripts = ['gsap', 'ScrollTrigger', 'ScrollToPlugin', 'animations'] %}
+
+{% import "components/button.njk" as macros %}
+
 {% extends 'layouts/layout.njk' %}
 {% block content %}
     <div class="wrapper">
@@ -32,12 +35,7 @@
                                     traditional Ukrainian toy.
                                 </p>
                             </div>
-                            <a class="hero__button button is-slide-left" href="#">
-                                About the collection
-                                <svg width="21" height="10" class="icon">
-                                    <use href="{{ iconUrl }}arrow-text"></use>
-                                </svg>
-                            </a>
+                            {{ macros.button(iconUrl, 'hero__button is-slide-left') }}
                         </div>
                     </div>
                 </div>
@@ -61,11 +59,11 @@
                         </div>
                     </div>
                 </div>
-{#                <div>#}
-{#                    <img src="./images/a1.png" width="766" height="750" class="about__image about__image-top" alt="">#}
-{#                    <img src="./images/a2.png" width="504" height="616" class="about__image about__image-left" alt="">#}
-{#                    <img src="./images/a3.png" width="380" height="466" class="about__image about__image-bottom" alt="">#}
-{#                </div>#}
+                {#                <div> #}
+                {#                    <img src="./images/a1.png" width="766" height="750" class="about__image about__image-top" alt=""> #}
+                {#                    <img src="./images/a2.png" width="504" height="616" class="about__image about__image-left" alt=""> #}
+                {#                    <img src="./images/a3.png" width="380" height="466" class="about__image about__image-bottom" alt=""> #}
+                {#                </div> #}
                 <svg class="about__icon about__icon-desktop" width="1288" height="166">
                     <use href="{{ iconUrl }}about-title-sprite-desk"></use>
                 </svg>
@@ -86,12 +84,7 @@
                                 stuffer, add some fun to your child's party with these colorful cute bird whistles.
                             </p>
                         </div>
-                        <a class="info-box__button button" href="#">
-                            All collection
-                            <svg width="21" height="10" class="icon">
-                                <use href="./i/sprite.svg#arrow-text"></use>
-                            </svg>
-                        </a>
+                        {{ macros.button(iconUrl, 'info-box__button') }}
                         {% set list = [
                             'Unique non-toxic glazed porcelain',
                             'Wonderful gift to yourself and your beloved ones',
@@ -100,22 +93,37 @@
                         <ul class="details__list">
                             {% for item in list %}
                                 <li class="details__item">
-                                    <svg width="23" height="18" viewBox="0 0 23 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M22.4806 4.16289C22.5069 4.27674 22.5378 4.41068 22.9317 4.80286L22.9318 4.80282C23.0843 4.95484 22.9622 5.22837 22.7486 5.28923H21.3745C21.1606 5.28923 21.0079 5.38041 20.8858 5.53244C20.7943 5.68447 20.7331 5.86682 20.7943 6.04918C20.9774 6.71771 21.069 7.41703 21.069 8.11612C21.069 12.3717 17.4963 15.8371 13.1906 15.7156C16.3358 12.0982 16.4582 6.74827 13.5877 2.97888C13.3434 2.67485 13.374 2.24929 13.6488 1.97575L14.3206 1.307C15.2368 0.455881 16.397 0 17.649 0C20.0615 0 22.1379 1.76308 22.4738 4.13411C22.4762 4.14366 22.4784 4.1532 22.4806 4.16289ZM11.6334 3.92125C11.9998 3.55634 12.6105 3.61719 12.916 4.04275L12.916 4.0429C15.6642 8.08581 14.7176 13.9525 10.1065 16.7188C9.1599 17.2964 8.12171 17.6916 7.0224 17.874C4.60991 18.269 2.22813 17.722 0.334923 16.3844C-0.0621217 16.1109 -0.123042 15.5028 0.24333 15.1381L11.6334 3.92125Z" fill="white"/>
+                                    <svg width="23" height="18" viewBox="0 0 23 18" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                              d="M22.4806 4.16289C22.5069 4.27674 22.5378 4.41068 22.9317 4.80286L22.9318 4.80282C23.0843 4.95484 22.9622 5.22837 22.7486 5.28923H21.3745C21.1606 5.28923 21.0079 5.38041 20.8858 5.53244C20.7943 5.68447 20.7331 5.86682 20.7943 6.04918C20.9774 6.71771 21.069 7.41703 21.069 8.11612C21.069 12.3717 17.4963 15.8371 13.1906 15.7156C16.3358 12.0982 16.4582 6.74827 13.5877 2.97888C13.3434 2.67485 13.374 2.24929 13.6488 1.97575L14.3206 1.307C15.2368 0.455881 16.397 0 17.649 0C20.0615 0 22.1379 1.76308 22.4738 4.13411C22.4762 4.14366 22.4784 4.1532 22.4806 4.16289ZM11.6334 3.92125C11.9998 3.55634 12.6105 3.61719 12.916 4.04275L12.916 4.0429C15.6642 8.08581 14.7176 13.9525 10.1065 16.7188C9.1599 17.2964 8.12171 17.6916 7.0224 17.874C4.60991 18.269 2.22813 17.722 0.334923 16.3844C-0.0621217 16.1109 -0.123042 15.5028 0.24333 15.1381L11.6334 3.92125Z"
+                                              fill="white"/>
                                     </svg>
                                     {{ item }}
                                 </li>
                             {% endfor %}
                         </ul>
                     </div>
-                    <img class="details__img is-slide-top-delay" src="./images/details.png" width="880" height="659" alt="">
+                    <img class="details__img is-slide-top-delay" src="./images/details.png" width="880" height="659"
+                         alt="">
                 </div>
             </section>
-            <section class="section-decor js-sections">
+            <section class="section-decor js-sections">'
                 <div class="is-fade-out-bg section-decor__wrapper">
                     <div class="section-decor__bg is-fade-out-bg__lower-level"></div>
                     <img class="section-decor__img is-slide-right" src="./images/birds.png" width="1140" height="1079"
                          alt="">
+                </div>
+            </section>
+            <section class="section section-icon">
+                <div class="container">
+                    <div class="info-box">
+                        <div class="info-box__text">
+                            See the whole collection and make yourself happy with a wonderful giftSee the whole
+                            collection and make yourself happy with a wonderful gift
+                        </div>
+                        {{ macros.button(iconUrl, 'info-box__button') }}
+                    </div>
                 </div>
             </section>
         </main>

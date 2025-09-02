@@ -1,0 +1,8 @@
+{% macro button(iconUrl, class) %}
+    <a class="button{{ ' ' + class if class }}" href="#">
+        All collection
+        <svg width="21" height="10" class="icon">
+            <use href="{{ iconUrl }}arrow-text"></use>
+        </svg>
+    </a>
+{% endmacro %}

@@ -92,7 +92,6 @@ window.addEventListener('load', function () {
           logoPosition = 0;
           break;
         case index === 3:
-          console.log('True');
           break;
         default:
           logoPosition = (window.innerHeight + 200) * index;
