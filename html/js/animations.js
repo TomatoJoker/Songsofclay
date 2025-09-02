@@ -68,13 +68,7 @@ window.addEventListener('load', function () {
       duration: speed,
       ease: "power3.out"
     }, "1");
-    var bannerSlideRight = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".".concat(loadClass, " .is-slide-right"),
-        start: "top top",
-        toggleActions: "play reverse play reverse"
-      }
-    });
+    var bannerSlideRight = gsap.timeline();
     bannerSlideRight.to(".".concat(loadClass, " .is-slide-right"), {
       x: 0,
       duration: speed * 0.8,
@@ -89,10 +83,10 @@ window.addEventListener('load', function () {
     bannerSlideRight.paused();
     var sections = document.querySelectorAll('.js-sections');
     var fixedLogo = document.querySelector(".".concat(loadClass)).querySelector('.js-fixed-element');
+    var fixedSocial = document.querySelector(".".concat(loadClass)).querySelector('.js-fixed-social');
     var currentIndex = 0,
       logoPosition = 0;
     var scrollLogo = function scrollLogo(index) {
-      console.log(index);
       switch (true) {
         case index === 0:
           logoPosition = 0;
@@ -115,6 +109,20 @@ window.addEventListener('load', function () {
     var goToSection = function goToSection(index) {
       if (index < 0 || index >= sections.length) return;
       scrollLogo(index);
+      var fixedSocialAnim = gsap.to(fixedSocial, {
+        scrollTrigger: {
+          trigger: '.js-fixed-social'
+        },
+        y: index * window.innerHeight,
+        duration: speed
+      });
+      if (index === 3) {
+        bannerSlideRight.play();
+        fixedSocialAnim.pause();
+      } else {
+        bannerSlideRight.reverse();
+        fixedSocialAnim.play();
+      }
       gsap.to(window, {
         scrollTo: sections[index],
         duration: speed,

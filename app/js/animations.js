@@ -78,38 +78,32 @@ window.addEventListener('load', () => {
                 ease: "power3.out"
             }, "1");
 
-        const bannerSlideRight = gsap.timeline({
-            scrollTrigger: {
-                trigger: `.${loadClass} .is-slide-right`,
-                start: "top top",
-                toggleActions: "play reverse play reverse"
-            }
-        });
+        const bannerSlideRight = gsap.timeline();
 
         bannerSlideRight
             .to(`.${loadClass} .is-slide-right`, {
-            x: 0,
-            duration: speed * 0.8,
-            visibility: "visible",
-            ease: "power2.in"
-         })
-        .to(`.${loadClass} .is-fade-out-bg__lower-level`, {
-            opacity: 1,
-            duration: speed * 1.1,
-            visibility: "visible",
-            ease: "power2.out"
-        })
+                x: 0,
+                duration: speed * 0.8,
+                visibility: "visible",
+                ease: "power2.in"
+             })
+            .to(`.${loadClass} .is-fade-out-bg__lower-level`, {
+                opacity: 1,
+                duration: speed * 1.1,
+                visibility: "visible",
+                ease: "power2.out"
+            })
 
         bannerSlideRight.paused();
 
         const sections = document.querySelectorAll('.js-sections');
         const fixedLogo = document.querySelector(`.${loadClass}`).querySelector('.js-fixed-element');
+        const fixedSocial = document.querySelector(`.${loadClass}`).querySelector('.js-fixed-social');
 
         let currentIndex = 0,
             logoPosition = 0;
 
         const scrollLogo = (index) => {
-            console.log(index);
 
             switch (true) {
                 case index === 0:
@@ -136,6 +130,23 @@ window.addEventListener('load', () => {
             if (index < 0 || index >= sections.length) return;
 
             scrollLogo(index);
+
+            let fixedSocialAnim =
+                gsap.to(fixedSocial, {
+                    scrollTrigger: {
+                        trigger: '.js-fixed-social',
+                    },
+                    y: (index * window.innerHeight),
+                    duration: speed
+                });
+
+            if (index === 3) {
+                bannerSlideRight.play();
+                fixedSocialAnim.pause();
+            } else {
+                bannerSlideRight.reverse();
+                fixedSocialAnim.play();
+            }
 
             gsap.to(window, {
                 scrollTo: sections[index],
