@@ -69,6 +69,9 @@ window.addEventListener('load', function () {
       ease: "power3.out"
     }, "1");
     var bannerSlideRight = gsap.timeline();
+    var bannerPosition = document.querySelector(".".concat(loadClass, " .is-fade-out-bg__lower-level")).getBoundingClientRect().top;
+    var hasBannerPlayed = false,
+      isBannerReady = false;
     bannerSlideRight.to(".".concat(loadClass, " .is-slide-right"), {
       x: 0,
       duration: speed * 0.8,
@@ -78,14 +81,23 @@ window.addEventListener('load', function () {
       opacity: 1,
       duration: speed * 1.1,
       visibility: "visible",
-      ease: "power2.out"
+      ease: "power2.out",
+      onComplete: function onComplete() {
+        hasBannerPlayed = true;
+        isBannerReady = false;
+      },
+      onReverseComplete: function onReverseComplete() {
+        hasBannerPlayed = false;
+        isBannerReady = false;
+      }
     });
-    bannerSlideRight.paused();
+    bannerSlideRight.pause();
     var sections = document.querySelectorAll('.js-sections');
     var fixedLogo = document.querySelector(".".concat(loadClass)).querySelector('.js-fixed-element');
     var fixedSocial = document.querySelector(".".concat(loadClass)).querySelector('.js-fixed-social');
     var currentIndex = 0,
-      logoPosition = 0;
+      logoPosition = 0,
+      currentPosition = 0;
     var scrollLogo = function scrollLogo(index) {
       switch (true) {
         case index === 0:
@@ -108,6 +120,7 @@ window.addEventListener('load', function () {
     var goToSection = function goToSection(index) {
       if (index < 0 || index >= sections.length) return;
       scrollLogo(index);
+      var scrollDirection = index > currentIndex ? 'down' : 'up';
       var fixedSocialAnim = gsap.to(fixedSocial, {
         scrollTrigger: {
           trigger: '.js-fixed-social'
@@ -115,20 +128,33 @@ window.addEventListener('load', function () {
         y: index * window.innerHeight,
         duration: speed
       });
-      if (index === 3) {
+      console.log(isBannerReady);
+      if (isBannerReady && !hasBannerPlayed && scrollDirection === 'down') {
+        event.preventDefault();
         bannerSlideRight.play();
         fixedSocialAnim.pause();
-      } else {
-        bannerSlideRight.reverse();
-        fixedSocialAnim.play();
       }
-      gsap.to(window, {
-        scrollTo: sections[index],
-        duration: speed,
-        onComplete: function onComplete() {
-          currentIndex = index;
-        }
-      });
+      if (!isBannerReady) {
+        gsap.to(window, {
+          scrollTo: sections[index],
+          duration: speed,
+          onComplete: function onComplete() {
+            currentIndex = index;
+            currentPosition = Math.round(window.scrollY);
+            console.log(bannerPosition, currentPosition);
+            if (bannerPosition === currentPosition) {
+              isBannerReady = true;
+            } else {
+              isBannerReady = false;
+            }
+          }
+        });
+      }
+      if (isBannerReady && hasBannerPlayed && scrollDirection === 'up') {
+        event.preventDefault();
+        bannerSlideRight.reverse();
+        fixedSocialAnim.pause();
+      }
     };
     window.addEventListener("wheel", function (event) {
       if (event.deltaY > 0) {
@@ -136,6 +162,8 @@ window.addEventListener('load', function () {
       } else {
         goToSection(currentIndex - 1);
       }
+    }, {
+      passive: false
     });
     fixedLogo.addEventListener('click', function () {
       goToSection(0);
