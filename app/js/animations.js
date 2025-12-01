@@ -153,8 +153,6 @@ window.addEventListener('load', () => {
                     duration: speed
                 });
 
-            console.log(isBannerReady);
-
 
             if (isBannerReady && !hasBannerPlayed && scrollDirection === 'down') {
                 event.preventDefault();
@@ -169,8 +167,6 @@ window.addEventListener('load', () => {
                     onComplete: () => {
                         currentIndex = index;
                         currentPosition = Math.round(window.scrollY);
-
-                        console.log(bannerPosition, currentPosition);
 
                         if (bannerPosition === currentPosition) {
                             isBannerReady = true;
