@@ -128,7 +128,6 @@ window.addEventListener('load', function () {
         y: index * window.innerHeight,
         duration: speed
       });
-      console.log(isBannerReady);
       if (isBannerReady && !hasBannerPlayed && scrollDirection === 'down') {
         event.preventDefault();
         bannerSlideRight.play();
@@ -141,7 +140,6 @@ window.addEventListener('load', function () {
           onComplete: function onComplete() {
             currentIndex = index;
             currentPosition = Math.round(window.scrollY);
-            console.log(bannerPosition, currentPosition);
             if (bannerPosition === currentPosition) {
               isBannerReady = true;
             } else {
