@@ -21,11 +21,14 @@ window.addEventListener('load', function () {
   if (window.innerWidth >= desktopMedia) {
     var animatedBody = document.querySelector('body');
     animatedBody === null || animatedBody === void 0 || animatedBody.classList.add(loadClass);
-    var i = 0;
-    var animateCreate = function animateCreate(el, objProperty, objScrollTrigger) {
+    var isSlideTopScrollTriggerObj = {
+      start: "top bottom",
+      toggleActions: "play none none none"
+    };
+    var animateCreate = function animateCreate(el, objProperty) {
+      var objScrollTrigger = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : isSlideTopScrollTriggerObj;
       var delay = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-      document.querySelectorAll(el).forEach(function (el) {
-        i = i + 1;
+      document.querySelectorAll(el).forEach(function (el, i) {
         gsap.to(el, _objectSpread(_objectSpread({}, objProperty), {}, {
           delay: i * delay,
           scrollTrigger: _objectSpread({
@@ -34,25 +37,16 @@ window.addEventListener('load', function () {
         }));
       });
     };
-    var isSlideTopObj = {
-        y: 0,
-        opacity: 1,
-        duration: speed,
-        ease: "power3.inOut"
-      },
-      isSlideTopScrollTriggerObj = {
-        start: "top bottom",
-        toggleActions: "play none none none"
-      };
-    animateCreate(".".concat(loadClass, " .is-slide-top"), isSlideTopObj, isSlideTopScrollTriggerObj);
-    animateCreate(".".concat(loadClass, " .is-slide-top-delay"), isSlideTopObj, isSlideTopScrollTriggerObj, 0.1);
+    animateCreate(".".concat(loadClass, " .is-slide-top"), {
+      y: 0,
+      opacity: 1,
+      duration: speed,
+      ease: "power3.inOut"
+    });
     animateCreate(".".concat(loadClass, " .is-zoom"), {
       scale: 1,
       duration: speed,
       ease: "power2.inOut"
-    }, {
-      start: "top bottom",
-      toggleActions: "play none none none"
     });
     gsap.to(".".concat(loadClass, " .is-slide-left"), {
       x: 0,
@@ -60,24 +54,31 @@ window.addEventListener('load', function () {
       duration: speed * 1.1,
       ease: "power3.inOut"
     });
-    var heroAnimTl = gsap.timeline();
-    heroAnimTl.to(".".concat(loadClass, " .is-hero-decor-animation-bounce"), {
+    var imagesSlideTopBounce = {
       y: 0,
       duration: speed,
-      ease: "back.out",
+      ease: "back.out"
+    };
+    var imagesSlideTop = {
+      y: 0,
+      duration: speed,
+      ease: "power3.out"
+    };
+    var heroAnimTl = gsap.timeline();
+    heroAnimTl.to(".".concat(loadClass, " .is-hero-decor-animation-bounce"), _objectSpread(_objectSpread({}, imagesSlideTopBounce), {}, {
       delay: 0.5,
       stagger: {
         each: 0.3
       }
-    }).to(".".concat(loadClass, " .is-hero-decor-animation-delay"), {
-      y: 0,
-      duration: speed,
-      ease: "power3.out"
-    }, "1");
+    })).to(".".concat(loadClass, " .is-hero-decor-animation-delay"), _objectSpread({}, imagesSlideTop), "1");
+    animateCreate(".".concat(loadClass, " .is-about-decor-animation-bounce"), imagesSlideTopBounce, {
+      start: "top 120%",
+      toggleActions: "play none none none"
+    }, speed / 3);
+    animateCreate(".".concat(loadClass, " .is-about-decor-animation"), imagesSlideTop, isSlideTopScrollTriggerObj, speed);
     var bannerSlideRight = gsap.timeline();
-    var bannerPosition = document.querySelector(".".concat(loadClass, " .is-fade-out-bg__lower-level")).getBoundingClientRect().top;
-    var hasBannerPlayed = false,
-      isBannerReady = false;
+    var wheelEnable = true;
+    var hasBannerPlayed = false;
     bannerSlideRight.to(".".concat(loadClass, " .is-slide-right"), {
       x: 0,
       duration: speed * 0.8,
@@ -89,10 +90,12 @@ window.addEventListener('load', function () {
       visibility: "visible",
       ease: "power2.out",
       onComplete: function onComplete() {
+        wheelEnable = true;
         hasBannerPlayed = true;
         currentIndex += 1;
       },
       onReverseComplete: function onReverseComplete() {
+        wheelEnable = true;
         hasBannerPlayed = false;
         currentIndex -= 1;
       }
@@ -103,18 +106,11 @@ window.addEventListener('load', function () {
     var fixedSocial = document.querySelector(".".concat(loadClass)).querySelector('.js-fixed-social');
     var bannerIndex = _toConsumableArray(sections).indexOf(document.querySelector('.section-decor'));
     var currentIndex = 0,
-      logoPosition = 0;
+      logoPosition = 0,
+      toolbarIndex = currentIndex;
     var scrollLogo = function scrollLogo(index) {
-      switch (true) {
-        case index === 0:
-          logoPosition = 0;
-          break;
-        case index === 3:
-          break;
-        default:
-          logoPosition = (window.innerHeight + 200) * index;
-          break;
-      }
+      var mod = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      logoPosition = (window.innerHeight + 200) * index + 200 * mod;
       gsap.to(fixedLogo, {
         scrollTrigger: {
           trigger: '.js-fixed-element'
@@ -125,49 +121,55 @@ window.addEventListener('load', function () {
     };
     var goToSection = function goToSection(index) {
       if (index < 0 || index >= sections.length) return;
+      wheelEnable = false;
       var scrollDirection = index > currentIndex ? 'down' : 'up';
       var scrollIndex = index;
-
-      // let fixedSocialAnim =
-      //     gsap.to(fixedSocial, {
-      //         scrollTrigger: {
-      //             trigger: '.js-fixed-social',
-      //         },
-      //         y: (index * window.innerHeight),
-      //         duration: speed
-      //     });
-
       if (bannerIndex === index && !hasBannerPlayed) {
-        // scrollLogo(index);
         bannerSlideRight.play();
-        // fixedSocialAnim.pause();
         return;
       }
-      console.log(bannerIndex - 1, index);
       if (bannerIndex - 1 === index && hasBannerPlayed) {
         bannerSlideRight.reverse();
-        // fixedSocialAnim.pause();
         return;
+      }
+      if (scrollDirection === 'down') {
+        toolbarIndex += 1;
+      } else {
+        toolbarIndex -= 1;
       }
       if (bannerIndex === index && scrollDirection === 'up') {
         scrollIndex = index - 1;
+        toolbarIndex = scrollIndex;
       }
-
-      // scrollLogo(index);
+      gsap.to(fixedSocial, {
+        scrollTrigger: {
+          trigger: '.js-fixed-social'
+        },
+        y: toolbarIndex * window.innerHeight,
+        duration: speed
+      });
+      var mod = 0;
+      if (sections[index] === document.querySelector('.section-icon')) {
+        mod = 1;
+      }
+      scrollLogo(toolbarIndex, mod);
       gsap.to(window, {
         scrollTo: sections[scrollIndex],
         duration: speed,
         onComplete: function onComplete() {
           currentIndex = index;
+          wheelEnable = true;
         }
       });
     };
     window.addEventListener("wheel", function (event) {
       event.preventDefault();
-      if (event.deltaY > 0) {
-        goToSection(currentIndex + 1);
-      } else {
-        goToSection(currentIndex - 1);
+      if (wheelEnable !== false) {
+        if (event.deltaY > 0) {
+          goToSection(currentIndex + 1);
+        } else {
+          goToSection(currentIndex - 1);
+        }
       }
     }, {
       passive: false

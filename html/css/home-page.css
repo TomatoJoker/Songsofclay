@@ -205,31 +205,22 @@
 
 @media only screen and (min-width: 1200px) {
   .about__image-top {
-    top: 0;
-    left: 100%;
-    -webkit-transform: translate(-70%, -40%);
-        -ms-transform: translate(-70%, -40%);
-            transform: translate(-70%, -40%);
+    top: -250px;
+    left: calc(100% - 508px);
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .about__image-left {
-    top: 50%;
+    top: calc(50% - 504px / 2);
     left: 50%;
-    -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .about__image-bottom {
-    bottom: 0;
-    left: 100%;
-    -webkit-transform: translate(-90%, 20%);
-        -ms-transform: translate(-90%, 20%);
-            transform: translate(-90%, 20%);
+    bottom: -93px;
+    left: calc(100% - 380px);
   }
 }
 
@@ -322,6 +313,71 @@
 
 .details__container {
   position: relative;
+}
+
+.section-shop__info {
+  max-width: 244px;
+}
+
+@media only screen and (min-width: 1200px) {
+  .section-shop__info {
+    max-width: 385px;
+    margin-top: 104px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .section-shop__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 35px;
+  }
+}
+
+.section-shop__btn {
+  margin-top: 25px;
+}
+
+@media only screen and (min-width: 1200px) {
+  .section-shop__btn {
+    margin-top: 35px;
+  }
+}
+
+.section-shop__icon {
+  margin-top: 116px;
+  width: 100vw;
+  height: auto;
+}
+
+@media only screen and (min-width: 1200px) {
+  .section-shop__img-decor {
+    position: absolute;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .section-shop__img-decor-top {
+    left: 0;
+    top: 0;
+    width: 279px;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .section-shop__img-decor-small {
+    margin-top: 75px;
+    left: 146px;
+  }
+}
+
+.section-shop__img-wrapper {
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 /*# sourceMappingURL=home-page.css.map */

@@ -1,0 +1,8 @@
+.is-about-decor-animation-bounce,
+.is-about-decor-animation {
+
+	@include is-animated {
+		transform: translateY( 100% );
+	}
+
+}

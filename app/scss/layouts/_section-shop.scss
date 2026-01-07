@@ -1,0 +1,63 @@
+.section-shop {
+
+  &__info {
+	max-width: 244px;
+
+	@include min-media($desktop) {
+	  max-width: 385px;
+	  margin-top: 104px;
+	}
+  }
+
+  &__row {
+
+	@include min-media($desktop) {
+	  display: flex;
+	  gap: 35px;
+	}
+  }
+
+  &__btn {
+	margin-top: 25px;
+
+	@include min-media($desktop) {
+	  margin-top: 35px;
+	}
+  }
+
+  &__icon {
+	margin-top: 116px;
+	width: 100vw;
+	height: auto;
+  }
+
+  &__img-decor {
+
+	@include min-media($desktop) {
+	  position: absolute;
+	}
+  }
+
+  &__img-decor-top {
+
+	@include min-media($desktop) {
+	  left: 0;
+	  top: 0;
+	  width: 279px;
+	  height: auto;
+	}
+  }
+
+  &__img-decor-small {
+
+	@include min-media($desktop) {
+	  margin-top: 75px;
+	  left: 146px;
+	}
+  }
+
+  &__img-wrapper {
+	position: relative;
+	flex-grow: 1;
+  }
+}

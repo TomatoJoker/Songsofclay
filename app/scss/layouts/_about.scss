@@ -5,52 +5,49 @@
   position: relative;
 
   &__icon {
-    margin-top: auto;
+	margin-top: auto;
   }
 
   &__image {
-    @include min-media($desktop) {
-      position: absolute;
-      width: auto;
-      height: auto;
-    }
+	@include min-media($desktop) {
+	  position: absolute;
+	  width: auto;
+	  height: auto;
+	}
   }
 
   &__image-top {
-    @include min-media($desktop) {
-      top: 0;
-      left: 100%;
-      transform: translate(-70%, -40%);
-    }
+	@include min-media($desktop) {
+	  top: -250px;
+	  left: calc(100% - 508px);
+	}
   }
 
   &__image-left {
-    @include min-media($desktop) {
-      top: 50%;
-      left: 50%;
-      transform: translateY(-50%);
-    }
+	@include min-media($desktop) {
+	  top: calc(50% - 504px / 2);
+	  left: 50%;
+	}
   }
 
   &__image-bottom {
-    @include min-media($desktop) {
-      bottom: 0;
-      left: 100%;
-      transform: translate(-90%, 20%);
-    }
+	@include min-media($desktop) {
+	  bottom: -93px;
+	  left: calc(100% - 380px);
+	}
   }
 
   &__icon-mobile {
 
-    @include min-media($desktop) {
-      display: none;
-    }
+	@include min-media($desktop) {
+	  display: none;
+	}
   }
 
   &__icon-desktop {
 
-    @include media($desktop) {
-      display: none;
-    }
+	@include media($desktop) {
+	  display: none;
+	}
   }
 }

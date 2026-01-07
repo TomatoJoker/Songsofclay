@@ -13,13 +13,15 @@ window.addEventListener('load', () => {
 
         animatedBody?.classList.add(loadClass);
 
-        let i = 0;
+		const isSlideTopScrollTriggerObj = {
+			start: "top bottom",
+			toggleActions: "play none none none"
+		}
 
-        const animateCreate = (el, objProperty, objScrollTrigger, delay = 0) => {
-            document.querySelectorAll(el).forEach(el => {
-                i = i + 1;
+		const animateCreate = (el, objProperty, objScrollTrigger = isSlideTopScrollTriggerObj, delay = 0) => {
+            document.querySelectorAll(el).forEach((el, i) => {
 
-                gsap.to(el, {
+				gsap.to(el, {
                     ...objProperty,
                     delay: i * delay,
                     scrollTrigger: {
@@ -30,27 +32,17 @@ window.addEventListener('load', () => {
             })
         }
 
-        const isSlideTopObj = {
-            y: 0,
-            opacity: 1,
-            duration: speed,
-            ease: "power3.inOut",
-        }, isSlideTopScrollTriggerObj = {
-            start: "top bottom",
-            toggleActions: "play none none none"
-        }
-
-        animateCreate(`.${loadClass} .is-slide-top`, isSlideTopObj, isSlideTopScrollTriggerObj);
-
-        animateCreate(`.${loadClass} .is-slide-top-delay`, isSlideTopObj, isSlideTopScrollTriggerObj, 0.1);
+        animateCreate(`.${loadClass} .is-slide-top`, {
+			y: 0,
+			opacity: 1,
+			duration: speed,
+			ease: "power3.inOut"
+		});
 
         animateCreate(`.${loadClass} .is-zoom`, {
             scale: 1,
             duration: speed,
             ease: "power2.inOut",
-        }, {
-            start: "top bottom",
-            toggleActions: "play none none none"
         });
 
         gsap.to(`.${loadClass} .is-slide-left`, {
@@ -60,28 +52,45 @@ window.addEventListener('load', () => {
             ease: "power3.inOut"
         })
 
+		const imagesSlideTopBounce = {
+			y: 0,
+			duration: speed,
+			ease: "back.out",
+		}
+
+		const imagesSlideTop = {
+			y: 0,
+			duration: speed,
+			ease: "power3.out"
+		}
+
         const heroAnimTl = gsap.timeline();
 
         heroAnimTl
             .to(`.${loadClass} .is-hero-decor-animation-bounce`, {
-                y: 0,
-                duration: speed,
-                ease: "back.out",
-                delay: 0.5,
-                stagger: {
-                    each: 0.3,
-                }
+				...imagesSlideTopBounce,
+				delay: 0.5,
+				stagger: {
+					each: 0.3,
+				}
             })
             .to(`.${loadClass} .is-hero-decor-animation-delay`, {
-                y: 0,
-                duration: speed,
-                ease: "power3.out"
+				...imagesSlideTop
             }, "1");
 
-        const bannerSlideRight = gsap.timeline();
-        const bannerPosition = document.querySelector(`.${loadClass} .is-fade-out-bg__lower-level`).getBoundingClientRect().top;
-        let hasBannerPlayed = false,
-            isBannerReady = false;
+		animateCreate(`.${loadClass} .is-about-decor-animation-bounce`, imagesSlideTopBounce,
+			{
+				start: "top 120%",
+				toggleActions: "play none none none"
+			}, speed / 3
+		);
+
+		animateCreate(`.${loadClass} .is-about-decor-animation`, imagesSlideTop, isSlideTopScrollTriggerObj, speed)
+
+
+		const bannerSlideRight = gsap.timeline();
+        let wheelEnable = true;
+		let hasBannerPlayed = false;
 
         bannerSlideRight
             .to(`.${loadClass} .is-slide-right`, {
@@ -96,10 +105,12 @@ window.addEventListener('load', () => {
                 visibility: "visible",
                 ease: "power2.out",
                 onComplete: () => {
+					wheelEnable = true;
                     hasBannerPlayed = true;
                     currentIndex += 1;
                 },
                 onReverseComplete: () => {
+					wheelEnable = true;
                     hasBannerPlayed = false;
                     currentIndex -= 1;
                 }
@@ -113,20 +124,12 @@ window.addEventListener('load', () => {
         const bannerIndex = [...sections].indexOf(document.querySelector('.section-decor'));
 
         let currentIndex = 0,
-            logoPosition = 0;
+            logoPosition = 0,
+			toolbarIndex = currentIndex;
 
-        const scrollLogo = (index) => {
+        const scrollLogo = (index, mod = 0) => {
 
-            switch (true) {
-                case index === 0:
-                    logoPosition = 0;
-                    break;
-                case index === 3:
-                    break;
-                default:
-                    logoPosition = (window.innerHeight + 200) * index;
-                    break;
-            }
+			logoPosition = ((window.innerHeight + 200) * index) + 200 * mod;
 
             gsap.to(fixedLogo, {
                 scrollTrigger: {
@@ -139,45 +142,54 @@ window.addEventListener('load', () => {
 
         const goToSection = (index) => {
             if (index < 0 || index >= sections.length) return;
+			wheelEnable = false;
 
             let scrollDirection = index > currentIndex ? 'down' : 'up';
 
             let scrollIndex = index;
 
-            // let fixedSocialAnim =
-            //     gsap.to(fixedSocial, {
-            //         scrollTrigger: {
-            //             trigger: '.js-fixed-social',
-            //         },
-            //         y: (index * window.innerHeight),
-            //         duration: speed
-            //     });
-
             if (bannerIndex === index && !hasBannerPlayed) {
-                // scrollLogo(index);
                 bannerSlideRight.play();
-                // fixedSocialAnim.pause();
                 return;
             }
-
-            console.log((bannerIndex - 1), index);
 
             if ((bannerIndex - 1) === index && hasBannerPlayed) {
                 bannerSlideRight.reverse();
-                // fixedSocialAnim.pause();
                 return;
             }
 
+			if (scrollDirection === 'down') {
+				toolbarIndex += 1;
+			} else {
+				toolbarIndex -= 1;
+			}
+
             if(bannerIndex === index && scrollDirection === 'up') {
                 scrollIndex = index - 1;
+				toolbarIndex = scrollIndex;
             }
 
-            // scrollLogo(index);
+			gsap.to(fixedSocial, {
+				scrollTrigger: {
+					trigger: '.js-fixed-social',
+				},
+				y: (toolbarIndex * window.innerHeight),
+				duration: speed
+			});
+
+			let mod = 0;
+
+			if (sections[index] === document.querySelector('.section-icon')) {
+				mod = 1;
+			}
+
+			scrollLogo(toolbarIndex, mod);
             gsap.to(window, {
                 scrollTo: sections[scrollIndex],
                 duration: speed,
                 onComplete: () => {
                     currentIndex = index;
+					wheelEnable = true;
                 }
             });
         }
@@ -185,11 +197,13 @@ window.addEventListener('load', () => {
         window.addEventListener("wheel", (event) => {
             event.preventDefault();
 
-            if (event.deltaY > 0) {
-                goToSection(currentIndex + 1);
-            } else {
-                goToSection(currentIndex - 1);
-            }
+			if (wheelEnable !== false) {
+				if (event.deltaY > 0) {
+					goToSection(currentIndex + 1);
+				} else {
+					goToSection(currentIndex - 1);
+				}
+			}
         }, { passive: false });
 
         fixedLogo.addEventListener('click', () => {

@@ -47,6 +47,15 @@
   }
 }
 
+@media only screen and (min-width: 1200px) {
+  .is-animated .is-about-decor-animation-bounce, .is-animated
+  .is-about-decor-animation {
+    -webkit-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+}
+
 .is-slide-right {
   position: relative;
 }
